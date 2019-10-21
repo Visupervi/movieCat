@@ -1,14 +1,37 @@
 import React, {Component} from "react";
-import MovieHeader from './movieHeadercomponent'
-import MovieFooter from './moviefootercomponent'
+import MovieHeader from './movie/Header'
+import MovieFooter from './movie/Footer'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import routers from "../router"
 class App extends Component {
   render() {
     return(
-      <div className={"movieApp"}>
-        <div className={"movieHeader"}>
+      <div className={"movie-app"}>
+        <div className={"movie-header"}>
           <MovieHeader/>
         </div>
-        <div className={"movieFooter"}>
+
+          <Router>
+            <div className={"movie-content"}>
+              {
+                routers.map((router,key)=>{
+                  if(router.exact){
+                    return <Route
+                    key={key}
+                    exact={router.exact}
+                    render={()=>{
+                    document.title = router.meta.title;
+                    return <router.componentName/>
+                    }
+                    }
+                    />
+                  }
+                })
+              }
+            </div>
+          </Router>
+
+        <div className={"movie-footer"}>
           <MovieFooter/>
         </div>
 
