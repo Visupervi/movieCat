@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { TabBar, ListView } from 'antd-mobile';
+import './index.less'
 class MovieFooter extends Component{
   constructor(props){
     super(props)
@@ -7,7 +8,7 @@ class MovieFooter extends Component{
 
   render() {
     return(
-      <div style={{ position: 'fixed', height: '100%', width: '100%', top:0  }}>
+      <div className={'footerWrap'}>
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"

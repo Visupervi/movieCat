@@ -30,11 +30,7 @@ class App extends Component {
               }
             </div>
           </Router>
-
-        <div className={"movie-footer"}>
           <MovieFooter/>
-        </div>
-
       </div>
       )
   }

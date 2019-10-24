@@ -17,3 +17,4 @@ export default function  Ajax(url, data={},type="GET") {
     })
   })
 }
+

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Carousel, WingBlank} from 'antd-mobile';
-import {getInTheaters} from '../../../api'
 import './index.less';
 
 class Moviecarousel extends Component {
@@ -8,28 +7,18 @@ class Moviecarousel extends Component {
     super(props);
     this.state = {
       imgHeight: 176,
-      carouselImg: []
+      carouselImg: [1, 2, 3],
+      slideIndex:"",
     }
   }
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
-
-  }
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    this.getImage();
-  }
-
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
 
   }
 
   componentDidMount() {
-    // simulate img loading
-    // setTimeout(() => {
-    //   this.setState({
-    //     : ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-    //   });
-    // }, 100);
+    console.log("props属性的值", this.props)
+    console.log(this.state.carouselImg);
   }
 
   //获取轮播图数据函数
@@ -37,50 +26,50 @@ class Moviecarousel extends Component {
    * 需要把image的地址暂存，要不然取不到图片
    * @returns {Promise<void>}
    */
-  async getImage() {
-    let res = await getInTheaters();
-    console.log(res);
-    let tempArr = [];
-    for (let i = 0; i < 5; i++) {
-      tempArr[i] = res.subjects[i];
-      let _u = tempArr[i].images.medium.substring(8);
-      tempArr[i].images.medium = 'https://images.weserv.nl/?url=' + _u;
-    }
-    this.setState({
-      carouselImg:tempArr
-    })
-
-  }
-
   render() {
+
+    console.log("props属性的值", this.props.carouselImg);
+    const imgData = this.props.carouselImg;
+    imgData.map((item, index) => {
+
+      console.log(index, item);
+    });
     return (
-      <WingBlank>
-        <Carousel
-          autoplay={true}
-          infinite
-          beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-          afterChange={index => console.log('slide to', index)}
-        >
-          {this.state.carouselImg.map((item,index) => (
-            <a
-              key={index}
-              href="http://www.alipay.com"
-              style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
-            >
-              <img
-                src={item.images.medium}
-                alt=""
-                style={{width: '100%', verticalAlign: 'top'}}
-                onLoad={() => {
-                  // fire window resize event to change height
-                  window.dispatchEvent(new Event('resize'));
-                  this.setState({imgHeight: 'auto'});
-                }}
-              />
-            </a>
-          ))}
-        </Carousel>
-      </WingBlank>
+
+      <Carousel className="space-carousel"
+                autoplay
+                infinite
+                beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
+                afterChange={index => console.log('slide to', index)}
+                frameOverflow="visible"
+                cellSpacing={10}
+                slideWidth={0.8}
+      >
+        {imgData.map((item, index) => (
+
+          <a
+            key={item}
+            href={item.alt}
+            style={{ display: 'block',
+              position: 'relative', width: '100%',
+              top: this.state.slideIndex === index ? -10 : 0,
+              height: '100%',
+              boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <img
+              src={item.images}
+              alt=""
+              style={{width: '100%', verticalAlign: 'top'}}
+              onLoad={() => {
+                // fire window resize event to change height
+                window.dispatchEvent(new Event('resize'));
+                // this.setState({imgHeight: 'auto'});
+              }}
+            />
+          </a>
+        ))}
+      </Carousel>
     )
   }
 }
