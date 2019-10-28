@@ -175,7 +175,7 @@ class Display extends Component {
         pageSize={4}
         onScroll={() => { console.log('scroll'); }}
         scrollRenderAheadDistance={500}
-        onEndReached={this.onEndReached()}
+        onEndReached={()=>this.onEndReached()}
         onEndReachedThreshold={10}
       />
     );

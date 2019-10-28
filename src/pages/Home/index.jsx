@@ -97,7 +97,7 @@ class MovieHome extends Component {
           {/*<MovieCarouse carouselImg={this.state.carouselImg}/>*/}
         </div>
         <div className={"movieList"}>
-          <Display listImg={this.state.listImg}/>
+          <Display />
         </div>
       </div>
     )
