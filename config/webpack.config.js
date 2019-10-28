@@ -38,7 +38,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(jsx|js)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
@@ -86,5 +86,7 @@ module.exports = {
   ]
 };
 
-console.log("######");
-console.log("运行结束");
+setTimeout(()=>{
+  console.log("######");
+  console.log("运行结束");
+},5000);

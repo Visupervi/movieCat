@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {Carousel, WingBlank} from 'antd-mobile';
+import {Swiper,CellsTitle,Flex,FlexItem} from 'react-weui';
+import 'weui';
+import 'react-weui/build/packages/react-weui.css';
 import './index.less';
-
 class Moviecarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
       imgHeight: 176,
-      carouselImg: [1, 2, 3],
-      slideIndex:"",
+      carouselImg: [],
+      slideIndex:0,
     }
   }
 
@@ -35,41 +36,25 @@ class Moviecarousel extends Component {
       console.log(index, item);
     });
     return (
-
-      <Carousel className="space-carousel"
-                autoplay
-                infinite
-                beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                afterChange={index => console.log('slide to', index)}
-                frameOverflow="visible"
-                cellSpacing={10}
-                slideWidth={0.8}
-      >
-        {imgData.map((item, index) => (
-
-          <a
-            key={item}
-            href={item.alt}
-            style={{ display: 'block',
-              position: 'relative', width: '100%',
-              top: this.state.slideIndex === index ? -10 : 0,
-              height: '100%',
-              boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <img
-              src={item.images}
-              alt=""
-              style={{width: '100%', verticalAlign: 'top'}}
-              onLoad={() => {
-                // fire window resize event to change height
-                window.dispatchEvent(new Event('resize'));
-                // this.setState({imgHeight: 'auto'});
-              }}
-            />
-          </a>
-        ))}
-      </Carousel>
+      <div style={{border: '1px solid #eee', background: '#f8f8f8'}}>
+        <Swiper
+          height={200}
+          onChange={ (prev, next) => this.setState({slideIndex: next}) }
+          auto={true}
+        >
+          {
+            imgData.map((item,index)=>{
+              return (
+                <div key={index+Math.round(new Date().getTime())} style={{width:'100%'}}>
+                  <img src={item.images} alt="" style={
+                    {width:"100%",height:'100%'}
+                  }/>
+                </div>
+              )
+            })
+          }
+        </Swiper>
+      </div>
     )
   }
 }

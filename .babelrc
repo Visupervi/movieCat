@@ -1,6 +1,14 @@
 {
-  "presets": ["@babel/preset-react"],
+  "presets": ["@babel/preset-env","@babel/preset-react"],
   "plugins":[
-    ["import", { "libraryName": "antd-mobile","style": true}]
+    ["import", { "libraryName": "antd-mobile","style": true}],
+    "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/transform-runtime",
+      {
+        "helpers": false,
+        "regenerator": true
+      }]
   ]
 }
+
