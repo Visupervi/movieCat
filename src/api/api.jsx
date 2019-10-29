@@ -1,8 +1,8 @@
 import Axios from 'axios';
 // import Toast from '../components/Toast'
-import { Modal, Toast } from 'antd-mobile';
+import {Modal, Toast} from 'antd-mobile';
 
-export default function  Ajax(url, data={},type="GET") {
+export default function Ajax(url, data = {}, type = "GET") {
   return new Promise((resolve, reject) => {
     let promise;
     if (type.toLocaleLowerCase() === "get") {
@@ -13,7 +13,8 @@ export default function  Ajax(url, data={},type="GET") {
     promise.then(res => {
       resolve(res.data)
     }).catch(err => {
-   Modal.alert("提示",err.message,[ { text: '确定', onPress: () => console.log('ok') },])
+      Modal.alert("提示", err.message, [{text: '确定', onPress: () => console.log('ok')},])
+      return
     })
   })
 }

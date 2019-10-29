@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import MovieCarouse from "../../components/Movie/Carousel";
-import Display from '../../components/Movie/Display'
+import MovieList from '../../components/Movie/List'
 import {getInTheaters, getInTheatersMore} from '../../api';
 import './index.less';
 
@@ -19,12 +19,13 @@ class MovieHome extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
 
   }
 
   componentDidMount() {
-    // this.getImage();
+    this.getImage();
+    this.getInTheatersData(this.state.page, this.state.count)
   }
 
   //获取轮播图的数据
@@ -47,9 +48,9 @@ class MovieHome extends Component {
 
   //获取数据列表的数据
   async getInTheatersData(page, count) {
-    let pageNum = 0;
+
     let res = await getInTheatersMore(page, count);
-    let total = Math.ceil(res.total / res / count);
+    let total = Math.ceil(res.total / res.count);
     let moveArr = [];
     moveArr = res.subjects;
     //js生成for循环的快捷键 itar
@@ -75,29 +76,18 @@ class MovieHome extends Component {
       moveArr[index].casts = castsTemp;
       moveArr[index].images = 'https://images.weserv.nl/?url=' + _u;
     });
-    let movieList = this.movieList.concat(moveArr);
-    pageNum++;
-    //设置控制下拉加载的变量，给page赋值
-    this.setState({
-      page: pageNum,
-      listImg: movieList
-    }, (preState, props) => {
-      if (this.state.page > total) {
-        this.setState({
-          allLoaded: true
-        })
-      }
-    })
+    console.log("请求电影列表数据",moveArr);
+    this.setState({listImg: moveArr,totalPage:total})
   }
 
   render() {
     return (
       <div className={"homeContent"}>
         <div className={"carouse"}>
-          {/*<MovieCarouse carouselImg={this.state.carouselImg}/>*/}
+          <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
-        <div className={"movieList"}>
-          <Display />
+        <div className={"mvieList"}>
+          <MovieList list={this.state}/>
         </div>
       </div>
     )
