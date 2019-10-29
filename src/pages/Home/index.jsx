@@ -48,7 +48,6 @@ class MovieHome extends Component {
 
   //获取数据列表的数据
   async getInTheatersData(page, count) {
-
     let res = await getInTheatersMore(page, count);
     let total = Math.ceil(res.total / res.count);
     let moveArr = [];
@@ -76,8 +75,12 @@ class MovieHome extends Component {
       moveArr[index].casts = castsTemp;
       moveArr[index].images = 'https://images.weserv.nl/?url=' + _u;
     });
-    console.log("请求电影列表数据",moveArr);
-    this.setState({listImg: moveArr,totalPage:total})
+    console.log("请求电影列表数据", moveArr);
+    this.setState({listImg: moveArr, totalPage: total})
+  }
+
+  getNextPage(prop){
+    console.log("打印子组件传递的值",prop)
   }
 
   render() {
@@ -87,7 +90,7 @@ class MovieHome extends Component {
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
         <div className={"mvieList"}>
-          <MovieList list={this.state}/>
+          <MovieList list={this.state} getNextPage = {()=>this.getNextPage()}/>
         </div>
       </div>
     )
