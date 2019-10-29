@@ -76,11 +76,17 @@ class MovieHome extends Component {
       moveArr[index].images = 'https://images.weserv.nl/?url=' + _u;
     });
     console.log("请求电影列表数据", moveArr);
-    this.setState({listImg: moveArr, totalPage: total})
+    this.setState({listImg: this.state.listImg.concat(moveArr), totalPage: total})
   }
 
-  getNextPage(prop){
-    console.log("打印子组件传递的值",prop)
+   getNextPage =  (prop={})=>{
+    console.log("打印子组件传递的值",prop);
+    this.setState({
+      page:prop.page
+    },(state,props)=>{
+      console.log("state", this.state);
+      this.getInTheatersData(this.state.page,this.state.count);
+    })
   }
 
   render() {
@@ -90,7 +96,7 @@ class MovieHome extends Component {
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
         <div className={"mvieList"}>
-          <MovieList list={this.state} getNextPage = {()=>this.getNextPage()}/>
+          <MovieList list={this.state} getNextPage = {this.getNextPage}/>
         </div>
       </div>
     )
