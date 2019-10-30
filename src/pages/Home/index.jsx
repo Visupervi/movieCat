@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-
 import MovieCarouse from "../../components/Movie/Carousel";
-import MovieList from '../../components/Movie/List'
+import MovieList from '../../components/Movie/List';
+import ClickSwitch from '../../components/Movie/ClickSwitch';
 import {getInTheaters, getInTheatersMore} from '../../api';
 import './index.less';
 
@@ -53,21 +53,22 @@ class MovieHome extends Component {
     let moveArr = [];
     moveArr = res.subjects;
     //js生成for循环的快捷键 itar
-    let directorsTemp = [];
-    let castsTemp = [];
-    moveArr.map((item, index) => {
-      let _u = item.images.medium.substring(8);
 
+    moveArr.map((item, index) => {
+      let directorsTemp = [];
+      let castsTemp = [];
+      let _u = item.images.medium.substring(8);
       //处理导演
       if (item.directors) {
-        item.directors.map((key, index) => {
-          directorsTemp[index] = key.name
+        item.directors.map((key, i) => {
+          console.log("key",key,i);
+          directorsTemp[i] = key.name
         })
       }
       //处理演员
       if (item.casts) {
-        item.casts.map((key, index) => {
-          castsTemp[index] = key.name
+        item.casts.map((key, i) => {
+          castsTemp[i] = key.name
         })
       }
 
@@ -95,6 +96,9 @@ class MovieHome extends Component {
         <div className={"carouse"}>
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
+        <div className={'tabChange'}>
+          <ClickSwitch/>
+        </div>
         <div className={"mvieList"}>
           <MovieList list={this.state} getNextPage = {this.getNextPage}/>
         </div>
@@ -102,5 +106,4 @@ class MovieHome extends Component {
     )
   }
 }
-
 export default MovieHome

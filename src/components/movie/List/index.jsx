@@ -77,6 +77,8 @@ class MovieList extends Component {
             <div className={"item-movie-right"}>
               <p><span className={'directors'}>导演：</span>{dataRow.directors.join("，")}</p>
               <p><span className={'casts'}>演员：</span>{dataRow.casts.join("，")}</p>
+              <p><span className={'casts'}>类型：</span>{dataRow.genres.join("，")}</p>
+              <p><span className={'casts'}>评分：</span>{dataRow.rating.average}</p>
               <p><span className={'year'}>上映时间：</span>{dataRow.year}</p>
             </div>
           </div>
@@ -89,7 +91,8 @@ class MovieList extends Component {
     let header = document.querySelector(".movie-header");
     let footer = document.querySelector('.footerWrap');
     let carousel = document.querySelector(".carouse");
-    const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(header).offsetHeight - ReactDOM.findDOMNode(footer).offsetHeight - ReactDOM.findDOMNode(carousel).offsetHeight;
+    let tabSwitch = document.querySelector(".tab-switch");
+    const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(header).offsetHeight - ReactDOM.findDOMNode(footer).offsetHeight - ReactDOM.findDOMNode(carousel).offsetHeight-ReactDOM.findDOMNode(tabSwitch).offsetHeight;
     this.setState((state)=>({height:hei}));
   }
 

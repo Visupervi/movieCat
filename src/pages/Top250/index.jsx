@@ -2,10 +2,10 @@ import React, {Component} from "react";
 import MovieCarouse from "../../components/Movie/Carousel";
 import MovieList from '../../components/Movie/List';
 import ClickSwitch from '../../components/Movie/ClickSwitch';
-import {getComingSoonCarousel, getComingSoon} from '../../api';
+import {getTop250Carousel, getTop250} from '../../api';
 import './index.less';
 
-class ComingSoon extends Component {
+class Top250 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class ComingSoon extends Component {
 
   //获取轮播图的数据
   async getImage() {
-    let res = await getComingSoonCarousel();
+    let res = await getTop250Carousel();
     console.log(res);
     let tempArr = [];
     for (let i = 0; i < 5; i++) {
@@ -48,12 +48,11 @@ class ComingSoon extends Component {
 
   //获取数据列表的数据
   async getInTheatersData(page, count) {
-    let res = await getComingSoon(page, count);
+    let res = await getTop250(page, count);
     let total = Math.ceil(res.total / res.count);
     let moveArr = [];
     moveArr = res.subjects;
     //js生成for循环的快捷键 itar
-
     moveArr.map((item, index) => {
       let directorsTemp = [];
       let castsTemp = [];
@@ -107,4 +106,4 @@ class ComingSoon extends Component {
   }
 }
 
-export default ComingSoon
+export default Top250

@@ -1,7 +1,7 @@
-import MovieHome from "../pages/Home"
-// import ComeSoonPage from "src/pages/comeSoonPage"
-// import nowShowPage from "src/pages/nowShowPage"
-// import  SearchPage from "src/pages/searchPage"
+import MovieHome from "../pages/Home";
+import ComeSoonPage from "../pages/comeSoon";
+import Top250 from "../pages/Top250";
+// import  SearchPage from "..//pages/searchPage"
 let routers = [
   {
     path:"/",
@@ -9,6 +9,24 @@ let routers = [
     exact:true,
     meta:{
       title:"正在热映",
+      keepAlive:true
+    }
+  },
+  {
+    path:"/ComeSoonPage",
+    componentName:ComeSoonPage,
+    exact:false,
+    meta:{
+      title:"即将上映",
+      keepAlive:true
+    }
+  },
+  {
+    path:"/Top250",
+    componentName:Top250,
+    exact:false,
+    meta:{
+      title:"Top250",
       keepAlive:true
     }
   }
