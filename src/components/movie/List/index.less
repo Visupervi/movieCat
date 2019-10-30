@@ -2,6 +2,35 @@
   .mvieList{
     .goodDetail{
       height: 500px;
+      .item-name{
+        .item-movie-name{
+          text-align: center;
+          font-weight: 600;
+          font-size: 16px;
+          background-color: #ececec;
+        }
+        .item-name-content{
+          display: flex;
+          .item-movie-left{
+            width: 27%;
+
+            height: 150px;
+            box-sizing: border-box;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .item-movie-right{
+            width: 73%;
+            padding: 10px;
+            box-sizing: border-box;
+            .directors,.casts,.year{
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
 }
