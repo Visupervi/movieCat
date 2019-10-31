@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {ListView} from "antd-mobile";
+import {withRouter,BrowserRouter as Router}from 'react-router-dom'
 
 import './index.less'
 
@@ -47,16 +48,27 @@ class MovieList extends Component {
   onEndReached(page, lastPage) {
     //当前页小于总页数继续请求下一页数据，否则停止请求数据
     if (Number(page) <= Number(lastPage)) {
-
       //把参数传给父组件，让父组件去请求数据
-
-      console.log("传给父组件的值", this.props.list);
+      // console.log("传给父组件的值", this.props.list);
       let num = ++this.props.list.page;
       this.props.getNextPage({page: num, count: this.props.list.count});
       this.setState({upLoading: true})
     }
   };
-
+//路由跳转
+  goToDetails = (id)=>{
+    let str = "";
+    let str1 = "";
+    if(this.props.location.pathname === "/"){
+      str = `/MovieHome/Details/${id}`;
+      str1 = `/MovieHome/Details/${id}`;
+    }else{
+      str = this.props.location.pathname+`/Details/${id}`
+      str1 = this.props.match.path+`/Details/${id}`
+    }
+    this.props.history.push(str);
+    this.props.match.push(str1)
+  };
 //获取item进行展示
   /**
    * @author Visupervi
@@ -66,8 +78,9 @@ class MovieList extends Component {
    * @return 组装好的list组件
    */
   row = (dataRow, rowID) => {
+    console.log("row",this.props.children);
     return (
-      <div key={rowID}>
+      <div key={rowID} onClick={()=>this.goToDetails(dataRow.id)}>
         <div className={"item-name"}>
           <p className={"item-movie-name"}>《{dataRow.title}》</p>
           <div className={"item-name-content"}>
@@ -98,6 +111,7 @@ class MovieList extends Component {
 
   render() {
     const {list} = this.props;
+    console.log("List",this.props.children);
     return (
       <div className={"goodDetail"}>
         {
@@ -112,7 +126,7 @@ class MovieList extends Component {
               </div>)}
               onEndReached={() => this.onEndReached(list.page, list.totalPage)}
               onScroll={() => {
-                console.log('scroll');
+                // console.log('scroll');
               }}
               onEndReachedThreshold={20}
               renderBodyComponent={() => <MyBody/>}
@@ -131,4 +145,4 @@ class MovieList extends Component {
   }
 }
 
-export default MovieList
+export default withRouter(MovieList);

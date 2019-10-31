@@ -31,7 +31,7 @@ class Top250 extends Component {
   //获取轮播图的数据
   async getImage() {
     let res = await getTop250Carousel();
-    console.log(res);
+    // console.log(res);
     let tempArr = [];
     for (let i = 0; i < 5; i++) {
       tempArr[i] = res.subjects[i];
@@ -75,16 +75,16 @@ class Top250 extends Component {
       moveArr[index].casts = castsTemp;
       moveArr[index].images = 'https://images.weserv.nl/?url=' + _u;
     });
-    console.log("请求电影列表数据", moveArr);
+    // console.log("请求电影列表数据", moveArr);
     this.setState({listImg: this.state.listImg.concat(moveArr), totalPage: total})
   }
 
   getNextPage =  (prop={})=>{
-    console.log("打印子组件传递的值",prop);
+    // console.log("打印子组件传递的值",prop);
     this.setState({
       page:prop.page
     },(state,props)=>{
-      console.log("state", this.state);
+      // console.log("state", this.state);
       this.getInTheatersData(this.state.page,this.state.count);
     })
   }
@@ -96,7 +96,7 @@ class Top250 extends Component {
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
         <div className={'tabChange'}>
-          <ClickSwitch/>
+          <ClickSwitch tabkey = {'t3'}/>
         </div>
         <div className={"mvieList"}>
           <MovieList list={this.state} getNextPage = {this.getNextPage}/>

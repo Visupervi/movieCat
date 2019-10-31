@@ -31,7 +31,7 @@ class MovieHome extends Component {
   //获取轮播图的数据
   async getImage() {
     let res = await getInTheaters();
-    console.log(res);
+    // console.log(res);
     let tempArr = [];
     for (let i = 0; i < 5; i++) {
       tempArr[i] = res.subjects[i];
@@ -61,7 +61,7 @@ class MovieHome extends Component {
       //处理导演
       if (item.directors) {
         item.directors.map((key, i) => {
-          console.log("key",key,i);
+          // console.log("key",key,i);
           directorsTemp[i] = key.name
         })
       }
@@ -76,31 +76,32 @@ class MovieHome extends Component {
       moveArr[index].casts = castsTemp;
       moveArr[index].images = 'https://images.weserv.nl/?url=' + _u;
     });
-    console.log("请求电影列表数据", moveArr);
+    // console.log("请求电影列表数据", moveArr);
     this.setState({listImg: this.state.listImg.concat(moveArr), totalPage: total})
   }
 
    getNextPage =  (prop={})=>{
-    console.log("打印子组件传递的值",prop);
+    // console.log("打印子组件传递的值",prop);
     this.setState({
       page:prop.page
     },(state,props)=>{
-      console.log("state", this.state);
+      // console.log("state", this.state);
       this.getInTheatersData(this.state.page,this.state.count);
     })
   }
 
   render() {
+    console.log("HomeProps",this.props);
     return (
       <div className={"homeContent"}>
         <div className={"carouse"}>
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
         <div className={'tabChange'}>
-          <ClickSwitch/>
+          <ClickSwitch tabkey = {"t1"}/>
         </div>
         <div className={"mvieList"}>
-          <MovieList list={this.state} getNextPage = {this.getNextPage}/>
+          <MovieList list={this.state} getNextPage = {this.getNextPage} children={this.props.children}/>
         </div>
       </div>
     )
