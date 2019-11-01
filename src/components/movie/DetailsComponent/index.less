@@ -1,0 +1,169 @@
+.movie-content {
+  height: 95%;
+  overflow: scroll;
+  .app {
+    padding: 0px 5px;
+    overflow: scroll;
+    padding-bottom: 60px;
+
+    h3 {
+      color: #007722;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    .detail {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      .image {
+        flex: 1;
+
+        img {
+          width: 90%;
+        }
+      }
+
+      .description {
+        flex: 1;
+
+        ul {
+          padding: 0px;
+          margin: 0px;
+          font-size: 13px;
+
+          li {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            color: #37a;
+
+            span {
+              color: #000;
+            }
+          }
+        }
+      }
+
+    }
+
+    .summary {
+      .summaryContent {
+        text-indent: 2rem;
+        font-size: 14px;
+      }
+    }
+
+    .relativPhoto {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0px;
+        padding: 0px;
+
+        li {
+          list-style: none;
+          flex: 1;
+
+          img {
+            width: 96%;
+            height: 105px;
+          }
+        }
+      }
+    }
+
+    .hotCommont {
+      ul {
+        margin: 0px;
+        padding: 0px;
+
+        li {
+          list-style: none;
+          position: relative;
+
+          .header {
+            position: relative;
+
+            .avatar {
+              width: 40px;
+              height: 40px;
+              box-sizing: border-box;
+              border-radius: 50%;
+              border: 1px solid #ccc;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            .name {
+              position: absolute;
+              font-size: 12px;
+              top: 5px;
+              left: 50px;
+            }
+          }
+
+          .content {
+            position: relative;
+            top: -15px;
+            left: 50px;
+
+            p {
+              word-wrap: break-word;
+              word-break: break-all;
+              width: 87%;
+              margin: 0px;
+              padding: 0px;
+              font-size: 14px;
+            }
+
+            .time {
+              position: relative;
+              bottom: -5px;
+              left: 0px;
+
+              p {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .button {
+      height: 50px;
+      position: relative;
+
+      .buttonWrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+        .mint-button--normal {
+          font-size: 12px;
+          width: 49%;
+          padding: 0px;
+          height: 35px;
+        }
+
+      }
+    }
+  }
+}

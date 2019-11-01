@@ -11,18 +11,7 @@ let routers = [
     meta: {
       title: "正在热映",
       keepAlive: true
-    },
-    children: [
-      {
-        path: "/MovieHome/Details/:id",
-        componentName: Details,
-        exact: true,
-        meta: {
-          title: "热映详情",
-          keepAlive: true
-        }
-      }
-    ]
+    }
   },
   {
     path: "/ComingSoon",
@@ -31,18 +20,7 @@ let routers = [
     meta: {
       title: "即将上映",
       keepAlive: true
-    },
-    children: [
-      {
-        path: "/ComingSoon/Details/:id",
-        componentName: Details,
-        exact: true,
-        meta: {
-          title: "即将上映详情",
-          keepAlive: true
-        }
-      }
-    ]
+    }
   },
   {
     path: "/Top250",
@@ -51,18 +29,16 @@ let routers = [
     meta: {
       title: "Top250",
       keepAlive: true
-    },
-    children: [
-      {
-        path: "/Top250/Details/:id",
-        componentName: Details,
-        exact: true,
-        meta: {
-          title: "Top250详情",
-          keepAlive: true
-        }
-      }
-    ]
+    }
+  },
+  {
+    path: "/:name/Details/:id",
+    componentName: Details,
+    exact: true,
+    meta: {
+      title: "Top250详情",
+      keepAlive: true
+    }
   }
 ];
 export default routers;

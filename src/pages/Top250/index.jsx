@@ -20,12 +20,12 @@ class Top250 extends Component {
   }
 
   UNSAFE_componentWillMount() {
-
+    this.getImage();
+    this.getInTheatersData(this.state.page, this.state.count)
   }
 
   componentDidMount() {
-    this.getImage();
-    this.getInTheatersData(this.state.page, this.state.count)
+
   }
 
   //获取轮播图的数据
@@ -87,7 +87,7 @@ class Top250 extends Component {
       // console.log("state", this.state);
       this.getInTheatersData(this.state.page,this.state.count);
     })
-  }
+  };
 
   render() {
     return (

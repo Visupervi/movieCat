@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {ListView} from "antd-mobile";
-import {withRouter,BrowserRouter as Router}from 'react-router-dom'
+import {withRouter, BrowserRouter as Router} from 'react-router-dom'
 
 import './index.less'
 
@@ -55,19 +55,17 @@ class MovieList extends Component {
       this.setState({upLoading: true})
     }
   };
+
 //路由跳转
-  goToDetails = (id)=>{
+  goToDetails = (id) => {
     let str = "";
     let str1 = "";
-    if(this.props.location.pathname === "/"){
+    if (this.props.location.pathname === "/") {
       str = `/MovieHome/Details/${id}`;
-      str1 = `/MovieHome/Details/${id}`;
-    }else{
-      str = this.props.location.pathname+`/Details/${id}`
-      str1 = this.props.match.path+`/Details/${id}`
+    } else {
+      str = this.props.location.pathname + `/Details/${id}`
     }
     this.props.history.push(str);
-    this.props.match.push(str1)
   };
 //获取item进行展示
   /**
@@ -78,9 +76,9 @@ class MovieList extends Component {
    * @return 组装好的list组件
    */
   row = (dataRow, rowID) => {
-    console.log("row",this.props.children);
+    console.log("row", this.props.children);
     return (
-      <div key={rowID} onClick={()=>this.goToDetails(dataRow.id)}>
+      <div key={rowID} onClick={() => this.goToDetails(dataRow.id)}>
         <div className={"item-name"}>
           <p className={"item-movie-name"}>《{dataRow.title}》</p>
           <div className={"item-name-content"}>
@@ -105,13 +103,13 @@ class MovieList extends Component {
     let footer = document.querySelector('.footerWrap');
     let carousel = document.querySelector(".carouse");
     let tabSwitch = document.querySelector(".tab-switch");
-    const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(header).offsetHeight - ReactDOM.findDOMNode(footer).offsetHeight - ReactDOM.findDOMNode(carousel).offsetHeight-ReactDOM.findDOMNode(tabSwitch).offsetHeight;
-    this.setState((state)=>({height:hei}));
+    const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(header).offsetHeight - ReactDOM.findDOMNode(footer).offsetHeight - ReactDOM.findDOMNode(carousel).offsetHeight - ReactDOM.findDOMNode(tabSwitch).offsetHeight;
+    this.setState((state) => ({height: hei}));
   }
 
   render() {
     const {list} = this.props;
-    console.log("List",this.props.children);
+    console.log("List", this.props.children);
     return (
       <div className={"goodDetail"}>
         {

@@ -20,12 +20,12 @@ class ComingSoon extends Component {
   }
 
   UNSAFE_componentWillMount() {
-
+    this.getImage();
+    this.getInTheatersData(this.state.page, this.state.count)
   }
 
   componentDidMount() {
-    this.getImage();
-    this.getInTheatersData(this.state.page, this.state.count)
+
   }
 
   //获取轮播图的数据
@@ -80,13 +80,13 @@ class ComingSoon extends Component {
     this.setState({listImg: this.state.listImg.concat(moveArr), totalPage: total})
   }
 
-  getNextPage =  (prop={})=>{
+  getNextPage = (prop = {}) => {
     // console.log("打印子组件传递的值",prop);
     this.setState({
-      page:prop.page
-    },(state,props)=>{
+      page: prop.page
+    }, (state, props) => {
       // console.log("state", this.state);
-      this.getInTheatersData(this.state.page,this.state.count);
+      this.getInTheatersData(this.state.page, this.state.count);
     })
   }
 
@@ -97,10 +97,10 @@ class ComingSoon extends Component {
           <MovieCarouse carouselImg={this.state.carouselImg}/>
         </div>
         <div className={'tabChange'}>
-          <ClickSwitch tabkey = {"t2"}/>
+          <ClickSwitch tabkey={"t2"}/>
         </div>
         <div className={"mvieList"}>
-          <MovieList list={this.state} getNextPage = {this.getNextPage}/>
+          <MovieList list={this.state} getNextPage={this.getNextPage}/>
         </div>
       </div>
     )

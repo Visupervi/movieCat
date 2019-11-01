@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import MovieHeader from './movie/Header'
-import MovieFooter from './movie/Footer'
-import {BrowserRouter as Router, Route, Switch,Redirect} from "react-router-dom";
+import MovieHeader from '../components/Movie/Header'
+import MovieFooter from '../components/Movie/Footer'
+import {HashRouter as Router, Route, Switch,Redirect} from "react-router-dom";
 import routers from "../router"
 
 class App extends Component {
